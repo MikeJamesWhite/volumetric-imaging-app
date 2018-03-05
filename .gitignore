@@ -1,0 +1,5 @@
+brain_mri_raws/
+MRI_originals_png/
+*.o
+*.so
+*.py
