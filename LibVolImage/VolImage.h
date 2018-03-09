@@ -9,7 +9,8 @@
 #ifndef VOL_IMAGE
 #define VOL_IMAGE
 
-#include <vector.h>
+#include <vector>
+#include <string>
 
 namespace WHTMIC023 {
 
@@ -18,19 +19,19 @@ class VolImage {
 private:
 
     int width, height;
-    vector <unsigned char**> slices;
+    std::vector <unsigned char**> slices;
 
 public:
 
     VolImage(); // default constructor
-    VolImage(); // default destructor
+    ~VolImage(); // default destructor
 
 
-    bool readImages(string baseName);
+    bool readImages(std::string baseName);
 
-    void diffmap(int sliceI, int sliceJ, string output_prefix);
+    void diffmap(int sliceI, int sliceJ, std::string output_prefix);
 
-    void extract(int sliceId, string output_prefix);
+    void extract(int sliceId, std::string output_prefix);
 
     int volImageSize(void);
 };
