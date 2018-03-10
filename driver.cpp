@@ -15,6 +15,7 @@
 using namespace WHTMIC023;
 using std::string;
 using std::cout;
+using std::endl;
 using std::stringstream;
 
 int main(int argc, const char* argv []) {
@@ -26,7 +27,6 @@ int main(int argc, const char* argv []) {
     }
 
     string option = string(argv[2]);
-
     if (option == "-x") {
         int i = 0;
         stringstream ss = stringstream(argv[3]);

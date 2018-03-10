@@ -64,8 +64,7 @@ bool VolImage::readImages(string baseName) {
 void VolImage::diffmap(int sliceI, int sliceJ, string output_prefix) {
     ofstream outFile;
     outFile.open(output_prefix + "output.data");
-    string header = std::to_string(height) + " " + std::to_string(width) + " 1";
-    outFile.write(header.c_str, header.size());
+    outFile << std::to_string(height) + " " + std::to_string(width) + " 1";
     outFile.close();
 
     outFile.open(output_prefix + "output.raw", std::ios_base::binary);
@@ -80,8 +79,7 @@ void VolImage::diffmap(int sliceI, int sliceJ, string output_prefix) {
 void VolImage::extract(int sliceId, string output_prefix) {
     ofstream outFile;
     outFile.open(output_prefix + "output.data");
-    string header = std::to_string(height) + " " + std::to_string(width) + " 1";
-    outFile.write(header.c_str, header.size());
+    outFile << std::to_string(height) + " " + std::to_string(width) + " 1";
     outFile.close();
 
     outFile.open(output_prefix + "output.raw", std::ios_base::binary);

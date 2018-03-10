@@ -18,3 +18,11 @@ clean:
 run: $(TARGET)
 	export LD_LIBRARY_PATH=LibVolImage/; \
 	./volimage ./brain_mri_raws/MRI
+
+extract: $(TARGET)
+	export LD_LIBRARY_PATH=LibVolImage/; \
+	./volimage ./brain_mri_raws/MRI -x 1 ./output/
+
+diff: $(TARGET)
+	export LD_LIBRARY_PATH=LibVolImage/; \
+	./volimage ./brain_mri_raws/MRI -d 1 0 ./output/
