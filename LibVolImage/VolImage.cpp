@@ -15,6 +15,7 @@
 using std::vector;
 using std::string;
 using std::ifstream;
+using std::ofstream;
 using std::endl;
 using std::cout;
 
@@ -24,6 +25,7 @@ VolImage::VolImage() { // default constructor
 }
 
 VolImage::~VolImage() { // destructor
+
     for (int i = 0; i < slices.size(); i++) {
         for (int j = 0; j < height; j++) {
             delete(slices[i][j]);
@@ -56,16 +58,39 @@ bool VolImage::readImages(string baseName) {
         slices.push_back(ptrArr);
         file.close();
     }
-    printf("Byte [1][1][1]: %u\n", slices[1][1][1]);
     return true;
 }
 
 void VolImage::diffmap(int sliceI, int sliceJ, string output_prefix) {
+    ofstream outFile;
+    outFile.open(output_prefix + "output.data");
+    string header = std::to_string(height) + " " + std::to_string(width) + " 1";
+    outFile.write(header.c_str, header.size());
+    outFile.close();
 
+    outFile.open(output_prefix + "output.raw", std::ios_base::binary);
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            outFile.put((unsigned char)(abs((float)slices[sliceI][i][j] - (float)slices[sliceJ][i][j])/2));
+        }
+    }
+    outFile.close();
 }
 
 void VolImage::extract(int sliceId, string output_prefix) {
+    ofstream outFile;
+    outFile.open(output_prefix + "output.data");
+    string header = std::to_string(height) + " " + std::to_string(width) + " 1";
+    outFile.write(header.c_str, header.size());
+    outFile.close();
 
+    outFile.open(output_prefix + "output.raw", std::ios_base::binary);
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            outFile.put(slices[sliceId][i][j]);
+        }
+    }
+    outFile.close();
 }
 
 int VolImage::volImageSize(void) {
