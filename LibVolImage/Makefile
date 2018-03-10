@@ -7,3 +7,6 @@ $(TARGET): VolImage.o
 
 VolImage.o: VolImage.cpp VolImage.h
 	$(CC) -c -o VolImage.o VolImage.cpp $(FLAGS)
+
+clean:
+	rm -f *.o *.so
