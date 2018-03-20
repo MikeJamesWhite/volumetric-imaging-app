@@ -3,3 +3,6 @@ MRI_originals_png/
 *.o
 *.so
 *.py
+output/
+.vscode/
+volimage

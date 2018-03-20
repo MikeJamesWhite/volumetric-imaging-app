@@ -27,14 +27,14 @@ int main(int argc, const char* argv []) {
     }
 
     string option = string(argv[2]);
-    if (option == "-x") {
+    if (option == "-x") { // extract normal slice
         int i = 0;
         stringstream ss = stringstream(argv[3]);
         ss >> i;
         string outputFile = string(argv[4]);
         volume.extract(i, outputFile);
     }
-    else if (option == "-d") {
+    else if (option == "-d") { // calculate diffmap
         int i, j = 0;
         stringstream ss = stringstream(argv[3]);
         ss >> i;
@@ -42,6 +42,13 @@ int main(int argc, const char* argv []) {
         ss >> j;
         string outputFile = string(argv[5]);
         volume.diffmap(i, j, outputFile);
+    }
+    else if (option == "-g") { // extract vertical slice
+        int i = 0;
+        stringstream ss = stringstream(argv[3]);
+        ss >> i;
+        string outputFile = string(argv[4]);
+        volume.rowExtract(i, outputFile);
     }
     else {
         cout << "Unrecognised command: " << option << ". Exiting...";

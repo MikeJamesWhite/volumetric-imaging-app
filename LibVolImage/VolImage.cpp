@@ -25,12 +25,11 @@ VolImage::VolImage() { // default constructor
 }
 
 VolImage::~VolImage() { // destructor
-
     for (int i = 0; i < slices.size(); i++) {
         for (int j = 0; j < height; j++) {
-            delete(slices[i][j]);
+            delete [] (slices[i][j]);
         }
-        delete(slices[i]);
+        delete [] (slices[i]);
     }
 }
 
@@ -86,6 +85,21 @@ void VolImage::extract(int sliceId, string output_prefix) {
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             outFile.put(slices[sliceId][i][j]);
+        }
+    }
+    outFile.close();
+}
+
+void VolImage::rowExtract(int rowNum, string output_prefix) {
+    ofstream outFile;
+    outFile.open(output_prefix + "output.data");
+    outFile << std::to_string(slices.size()) + " " + std::to_string(width) + " 1";
+    outFile.close();
+
+    outFile.open(output_prefix + "output.raw", std::ios_base::binary);
+    for (int i = 0; i < slices.size(); i++) {
+        for (int j = 0; j < width; j++) {
+            outFile.put(slices[i][rowNum][j]);
         }
     }
     outFile.close();

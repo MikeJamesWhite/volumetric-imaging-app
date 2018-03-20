@@ -6,6 +6,7 @@
  * Author: Mike White (WHTMIC023)
  * Date: 05/03/2018
  */
+
 #ifndef VOL_IMAGE
 #define VOL_IMAGE
 
@@ -32,6 +33,8 @@ public:
     void diffmap(int sliceI, int sliceJ, std::string output_prefix);
 
     void extract(int sliceId, std::string output_prefix);
+
+    void rowExtract(int rowNumber, std::string output_prefix);
 
     int volImageSize(void);
 };

@@ -26,3 +26,7 @@ extract: $(TARGET)
 diff: $(TARGET)
 	export LD_LIBRARY_PATH=LibVolImage/; \
 	./volimage ./brain_mri_raws/MRI -d 1 0 ./output/
+
+rowExtract: $(TARGET)
+	export LD_LIBRARY_PATH=LibVolImage/; \
+	./volimage ./brain_mri_raws/MRI -g 1 ./output/
